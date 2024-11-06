@@ -90,5 +90,15 @@
     <footer>
         <p>&copy; 2024 Все права защищены</p>
     </footer>
+    <script>
+        document.getElementById('clickable-image').addEventListener('click', function() {
+            const content = document.getElementById('content');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
