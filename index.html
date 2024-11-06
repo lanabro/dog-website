@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -29,27 +29,27 @@
         <section id="breeds">
             <h2>Породы собак</h2>
             <div class="card">
-                <img src="https://example.com/labrador.jpg" alt="Лабрадор">
+                <img src="https://example.com/labrador.jpg" alt="Лабрадор" class="clickable-image">
                 <h3>Лабрадор-ретривер</h3>
                 <p>Лабрадоры дружелюбные и энергичные собаки, отличные компаньоны для семьи.</p>
             </div>
             <div class="card">
-                <img src="https://example.com/german-shepherd.jpg" alt="Немецкая овчарка">
+                <img src="https://example.com/german-shepherd.jpg" alt="Немецкая овчарка" class="clickable-image">
                 <h3>Немецкая овчарка</h3>
                 <p>Умные и преданные, немецкие овчарки часто используются в полиции и армии.</p>
             </div>
             <div class="card">
-                <img src="https://example.com/golden-retriever.jpg" alt="Золотистый ретривер">
+                <img src="https://example.com/golden-retriever.jpg" alt="Золотистый ретривер" class="clickable-image">
                 <h3>Золотистый ретривер</h3>
                 <p>Эти собаки известны своим добрым нравом и умом, отлично подходят для семей с детьми.</p>
             </div>
             <div class="card">
-                <img src="https://example.com/beagle.jpg" alt="Бигль">
+                <img src="https://example.com/beagle.jpg" alt="Бигль" class="clickable-image">
                 <h3>Бигль</h3>
                 <p>Бигли — это маленькие, но энергичные собаки, известные своим острым обонянием.</p>
             </div>
             <div class="card">
-                <img src="https://example.com/bulldog.jpg" alt="Бульдог">
+                <img src="https://example.com/bulldog.jpg" alt="Бульдог" class="clickable-image">
                 <h3>Бульдог</h3>
                 <p>Бульдоги имеют характерный внешний вид и дружелюбный характер, отлично подходят для жизни в квартире.</p>
             </div>
@@ -58,13 +58,13 @@
         <section id="reviews">
             <h2>Отзывы</h2>
             <div class="card">
-                <img src="dog1.jpg" alt="Собака 1">
-                <h3>Мария Смирнова</h3>
+                <img src="dog1.jpg" alt="Собака 1" class="clickable-image">
+                <h3>Иван Петров</h3>
                 <p>Моя собака — это моя радость! Она всегда рядом и поддерживает меня.</p>
             </div>
             <div class="card">
-                <img src="dog2.jpg" alt="Собака 2">
-                <h3>Иван Петров</h3>
+                <img src="dog2.jpg" alt="Собака 2" class="clickable-image">
+                <h3>Мария Смирнова</h3>
                 <p>Собака — это не просто питомец, это член семьи!</p>
             </div>
         </section>
@@ -90,15 +90,38 @@
     <footer>
         <p>&copy; 2024 Все права защищены</p>
     </footer>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+        <div id="caption"></div>
+    </div>
+
     <script>
-        document.getElementById('clickable-image').addEventListener('click', function() {
-            const content = document.getElementById('content');
-            if (content.style.display === 'none' || content.style.display === '') {
-                content.style.display = 'block';
-            } else {
-                content.style.display = 'none';
-            }
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modal-image");
+        const captionText = document.getElementById("caption");
+        const images = document.querySelectorAll('.clickable-image');
+
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            });
         });
+
+        const span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
